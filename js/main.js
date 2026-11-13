@@ -13,12 +13,9 @@ const WAITLIST = {
   action: "", // e.g. "https://docs.google.com/forms/d/e/XXXX/formResponse"
   fields: {
     name: "",      // e.g. "entry.123456789"
-    phone: "",
-    email: "",
+    contact: "",   // phone or email
     town: "",
-    wants: "",     // checkbox question (Single bulbs / By the pound / Braids)
-    amount: "",
-    notes: ""
+    notes: ""      // what they would like
   }
 };
 
@@ -54,14 +51,13 @@ const WAITLIST = {
       e.preventDefault();
       const d = new FormData(form);
       const name = (d.get("name") || "").trim();
-      const phone = (d.get("phone") || "").trim();
-      const email = (d.get("email") || "").trim();
-      const wants = d.getAll("wants");
+      const contact = (d.get("contact") || "").trim();
+      const digits = contact.replace(/\D/g, "");
+      const looksEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact);
 
       const problems = [];
       if (!name) problems.push("your name");
-      if (!phone && !email) problems.push("a phone number or email so we can reach you");
-      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) problems.push("an email address that looks complete");
+      if (!looksEmail && digits.length < 10) problems.push("a full phone number or email");
       if (problems.length) {
         err.textContent = "Please add " + problems.join(" and ") + ".";
         err.classList.add("show");
@@ -79,17 +75,14 @@ const WAITLIST = {
         const f = WAITLIST.fields;
         const add = (key, val) => { if (key && val) body.append(key, val); };
         add(f.name, name);
-        add(f.phone, phone);
-        add(f.email, email);
+        add(f.contact, contact);
         add(f.town, d.get("town"));
-        wants.forEach((w) => add(f.wants, w));
-        add(f.amount, (d.get("amount") || "").trim());
         add(f.notes, (d.get("notes") || "").trim());
         try {
           await fetch(WAITLIST.action, { method: "POST", mode: "no-cors", body });
         } catch (x) {
           submit.disabled = false;
-          submit.textContent = "Add me to the 2027 waitlist";
+          submit.textContent = "Join the 2027 waitlist";
           err.textContent = "Something went wrong sending that. Please try again, or call or text 403-899-8484.";
           err.classList.add("show");
           return;

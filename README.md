@@ -25,7 +25,7 @@ Every page ends with the 2027 waitlist form. Styles are in `css/style.css`, the 
 
 The form sends each signup to a Google Form, which saves it in a Google Sheet automatically.
 
-1. Make a Google Form with these questions: Name, Phone, Email, Town, What would you like (checkboxes: Single bulbs, By the pound, Braids), Roughly how much, Notes.
+1. Make a Google Form with four short-answer questions: Name, Phone or email, Town, What would you like.
 2. In the form's **Responses** tab, click **Link to Sheets** to create the sheet.
 3. Click the three-dot menu, then **Get pre-filled link**, fill in every question with any text, and click **Get link**. The link contains `entry.123456789=` for each question.
 4. Open `js/main.js`. Set `action` to the form address with `/viewform` changed to `/formResponse`, and put each `entry.` number next to the matching field.
