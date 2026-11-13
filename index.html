@@ -1,451 +1,265 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en-CA">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sutherland Farm | Hand-Planted Garlic, Carstairs, Alberta</title>
-<meta name="description" content="Hand-planted Siberian Hardneck garlic from a family farm near Carstairs, Alberta, since 1919. The 2026 harvest is sold out.">
-<meta property="og:title" content="Sutherland Farm | Hand-Planted Garlic">
-<meta property="og:description" content="Family farm since 1919. Alberta-grown Siberian Hardneck garlic.">
+<title>Sutherland Farm | Garlic grown in Carstairs, Alberta</title>
+<meta name="description" content="Hand-grown Siberian Hardneck garlic from a Carstairs, Alberta family farm, est. 1919. The 2026 crop is sold out. Join the 2027 waitlist.">
+<meta property="og:title" content="Sutherland Farm | Garlic grown in Carstairs, Alberta">
+<meta property="og:description" content="Hand-grown Siberian Hardneck garlic from a Carstairs, Alberta family farm, est. 1919. The 2026 crop is sold out. Join the 2027 waitlist.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="images/garlic-bowl.jpg">
-<link rel="icon" href="images/favicon.png">
+<meta property="og:image" content="images/bag-field.jpg">
+<meta name="theme-color" content="#141211">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="apple-touch-icon" href="images/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Farm","name":"Sutherland Farm","foundingDate":"1919","address":{"@type":"PostalAddress","addressLocality":"Carstairs","addressRegion":"AB","addressCountry":"CA"},"description":"Family farm growing hand-planted Siberian Hardneck garlic in Alberta."}
-</script>
-<style>
-/* Concept: a pinned full-screen stage. Scrolling slides the product cards sideways along a gentle arc;
-   hovering (or tapping) a card turns it around to show its details. */
-:root{
-  --cream:#f1e9db; --plum:#141211; --plum-2:#0a0909; --ember:#b98a55; --ember-soft:#d4a874;
-  --display:'Cormorant Garamond',Georgia,'Times New Roman',serif;
-  --sans:'Jost','Avenir Next','Helvetica Neue',Arial,sans-serif;
-  --pill:999px;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--cream);color:var(--plum);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip}
-img{max-width:100%;display:block}
-:focus-visible{outline:3px solid var(--ember);outline-offset:4px}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-.label{font-size:.74rem;letter-spacing:.26em;text-transform:uppercase;font-weight:500}
-
-/* top bar */
-.bar{position:fixed;inset:0 0 auto;z-index:50;display:grid;grid-template-columns:1fr auto 1fr;align-items:start;padding:20px 24px;pointer-events:none}
-.pill{display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 20px;border-radius:var(--pill);background:var(--cream);box-shadow:inset 0 0 0 1.5px var(--plum);font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--plum)}
-.pill i{width:9px;height:9px;background:var(--ember);transform:rotate(45deg);display:block}
-.bar .logo{width:124px;height:124px;margin-top:-6px}
-.bar .right{justify-self:end}
-.bar .left{justify-self:start}
-@media(max-width:620px){.bar{padding:14px 14px}.bar .left{display:none}.bar .logo{width:92px;height:92px;grid-column:2}.bar .right{grid-column:3;padding:0 14px;font-size:.68rem}}
-
-/* pinned scroller: height is set by script (an endless, self-resetting scroll) */
-.scroller{position:relative;height:400svh}
-.stage{position:sticky;top:0;height:100svh;min-height:640px;overflow:hidden;background:var(--cream)}
-
-.blob{position:absolute;left:50%;top:64%;width:min(1100px,130vw);aspect-ratio:1;background:var(--plum);border-radius:17%;transform:translateX(-50%) rotate(-7deg)}
-
-/* cards */
-.track{position:absolute;inset:0;z-index:10;pointer-events:none}
-.card{--w:clamp(210px,23vw,330px);position:absolute;left:50%;top:18%;width:var(--w);aspect-ratio:3/4;margin-left:calc(var(--w)/-2);perspective:1100px;pointer-events:auto;will-change:transform;cursor:pointer;background:none;border:0;text-align:left;font:inherit;color:inherit}
-.inner{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.3,.7,.2,1)}
-.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;box-shadow:0 34px 50px -22px rgba(20,18,17,.55)}
-.card.arch .face{border-radius:999px 999px 28px 28px}
-.card.round .face{border-radius:28px}
-.front img{width:100%;height:100%;object-fit:cover}
-.front .chip{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);background:var(--cream);color:var(--plum);border-radius:var(--pill);padding:7px 16px;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;white-space:nowrap}
-.back{transform:rotateY(180deg);background:var(--plum-2);color:var(--cream);display:grid;align-content:center;justify-items:center;text-align:center;padding:12% 11%;gap:12px}
-.card.arch .back{padding-top:26%}
-.back .label{color:var(--ember-soft)}
-.back h3{font-family:var(--display);font-weight:600;font-size:clamp(1.7rem,2.5vw,2.3rem);line-height:1}
-.back .price{font-family:var(--display);font-style:italic;font-size:clamp(2rem,3vw,2.8rem);color:var(--ember-soft);line-height:1}
-.back p{font-size:.9rem;line-height:1.5;opacity:.88}
-@media (hover:hover){.card:hover .inner{transform:rotateY(180deg)}}
-.card:focus-visible .inner,.card.flipped .inner{transform:rotateY(180deg)}
-
-/* floating bulb (card 1): shakes, sheds real shells, then drops a clove that bounces once and falls away */
-.card.float .face{box-shadow:none;border-radius:0;overflow:visible;backface-visibility:visible}
-.card.float .inner{transform:none!important}
-.bob{position:absolute;inset:0;animation:bob 6s ease-in-out infinite}
-@keyframes bob{0%,100%{transform:translateY(-6px) rotate(-1.2deg)}50%{transform:translateY(10px) rotate(1.2deg)}}
-.bulb{position:absolute;inset:0;transform-origin:50% 88%}
-.bulb .skin,.bulb .bare,.bulb .bare2{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;filter:drop-shadow(0 14px 18px rgba(20,18,17,.28))}
-.bulb .bare,.bulb .bare2{opacity:0}
-.bulb.taken .bare2{opacity:1}
-.bulb .cl{position:absolute;height:auto;opacity:0;pointer-events:none;filter:drop-shadow(2px 5px 5px rgba(70,40,15,.42))}
-.bulb.show .cl{opacity:1}
-.bulb.show.taken .cl{opacity:0}
-.bulb .skin{transition:opacity .35s linear}
-.bulb.gone .skin{opacity:0}
-.bulb.shaking{animation:shake .75s linear 1}
-@keyframes shake{0%,100%{transform:translate(0,0) rotate(0)}8%{transform:translate(-6px,0) rotate(-2.6deg)}18%{transform:translate(6px,-2px) rotate(2.8deg)}28%{transform:translate(-7px,0) rotate(-3deg)}38%{transform:translate(7px,-2px) rotate(3deg)}48%{transform:translate(-6px,0) rotate(-2.6deg)}60%{transform:translate(5px,-1px) rotate(2.2deg)}72%{transform:translate(-4px,0) rotate(-1.6deg)}85%{transform:translate(3px,0) rotate(1deg)}}
-.bulb{container-type:inline-size}
-.bulb .fl{position:absolute;left:var(--x);top:var(--y);width:var(--w);opacity:0;pointer-events:none;will-change:transform;filter:drop-shadow(0 3px 5px rgba(20,18,17,.26))}
-.bulb .fl .hg{position:relative;width:100%;will-change:transform}
-.bulb .fl img{display:block;width:100%;height:auto}
-.bulb .fl .sd{position:absolute;inset:0;opacity:0;-webkit-mask-size:100% 100%;mask-size:100% 100%;background:linear-gradient(var(--ga),rgba(74,40,22,.62) 0%,rgba(74,40,22,0) 52%,rgba(255,252,246,.5) 100%)}
-.bulb.show .bare{opacity:1}
-.shadow{position:absolute;left:18%;right:18%;bottom:-6%;height:8%;border-radius:50%;background:radial-gradient(ellipse,rgba(20,18,17,.45),transparent 70%);filter:blur(6px);animation:shadow 6s ease-in-out infinite}
-@keyframes shadow{0%,100%{transform:scale(1.05);opacity:.85}50%{transform:scale(.8);opacity:.55}}
-.clove{position:absolute;left:0;top:0;z-index:120;opacity:0;pointer-events:none;will-change:transform;filter:drop-shadow(0 10px 10px rgba(20,18,17,.4))}
-@keyframes land{0%{transform:translateY(0)}35%{transform:translateY(9px)}100%{transform:translateY(0)}}
-.copy .name.land{animation:land .55s ease 1}
-@media (prefers-reduced-motion:reduce){.bob,.shadow{animation:none!important}}
-
-/* copy on the plum shape */
-.copy{position:absolute;left:0;right:0;top:71%;z-index:5;text-align:center;color:var(--cream);padding:0 20px;pointer-events:none}
-.copy .label{color:var(--ember-soft);display:block;margin-bottom:10px}
-.copy .name{font-family:var(--display);font-weight:600;font-size:clamp(2.4rem,6vw,5rem);line-height:1;transition:opacity .25s}
-.copy .name em{font-weight:500;color:var(--ember-soft)}
-.copy .meta{margin-top:12px;font-size:.95rem;opacity:.85;transition:opacity .25s}
-.copy.swap .name,.copy.swap .meta,.copy.swap .label{opacity:0}
-.foot{position:absolute;bottom:20px;left:0;right:0;z-index:6;display:flex;justify-content:space-between;align-items:center;padding:0 28px;color:var(--cream);font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;pointer-events:none}
-.foot .cue{position:absolute;left:0;right:0;text-align:center;transition:opacity .4s}
-.foot .cue::after{content:"";display:block;width:1px;height:22px;background:var(--cream);margin:8px auto 0;animation:drop 1.8s ease-in-out infinite;transform-origin:top}
-@keyframes drop{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
-.foot .count,.foot .hint{background:var(--cream);color:var(--plum);box-shadow:inset 0 0 0 1.5px var(--plum);border-radius:var(--pill);padding:9px 16px;font-variant-numeric:tabular-nums}
-
-@media(max-width:700px){
-  .blob{top:60%;width:210vw}
-  .card{--w:min(58vw,260px);top:16%}
-  .copy{top:68%}
-  .foot{padding:0 18px}
-  .foot .hint{display:none}
-}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="notice">Our 2026 garlic is sold out. <a href="#waitlist">Join the 2027 waitlist</a></div>
+<header class="site-header">
+  <div class="wrap header-in">
+    <a class="brand" href="index.html" aria-label="Sutherland Farm, home">
+      <img src="images/logo.png" alt="" width="64" height="64">
+      <span class="brand-name">Sutherland Farm<small>Carstairs, Alberta</small></span>
+    </a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="site-nav"><span></span><b>Menu</b></button>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="index.html" aria-current="page">Home</a><a href="our-story.html">Our Story</a><a href="the-garlic.html">The Garlic</a><a href="how-to-order.html">How to Order</a>
+      <a class="btn btn-primary" href="#waitlist">Join the waitlist</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
 
-<div class="bar">
-  <span class="pill left">Carstairs, Alberta</span>
-  <a href="#top" aria-label="Sutherland Farm"><img class="logo" src="images/logo.png" alt="Sutherland Farm, established 1919"></a>
-  <span class="pill right"><i></i>2026 harvest sold out</span>
-</div>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Family farm · Carstairs, Alberta · Est. 1919</span>
+      <h1>Garlic grown by hand, right here in Carstairs.</h1>
+      <p class="lead">Big, easy-to-peel Siberian Hardneck garlic from our family farm. This year’s crop is sold out. Add your name to the 2027 waitlist and we’ll contact you first when the new harvest is ready.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="#waitlist">Join the 2027 waitlist <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="tel:+14038998484"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg> Call or text 403-899-8484</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <img class="hero-bulb" src="images/hero-bulb.jpg" alt="A single bulb of Sutherland Farm Siberian Hardneck garlic" width="647" height="1100">
+      <div class="stamp"><span><b>2026</b>sold out</span></div>
+    </div>
+  </div>
+</section>
 
-<main id="top">
-<h1 class="sr">Sutherland Farm: hand-planted Siberian Hardneck garlic from Carstairs, Alberta</h1>
+<section class="facts" aria-label="Quick facts">
+  <ul class="wrap">
+    <li><b>Est. 1919</b><span>Family farm</span></li>
+    <li><b>Siberian</b><span>Hardneck garlic</span></li>
+    <li><b>By hand</b><span>Planted and harvested</span></li>
+    <li><b>Delivered</b><span>Carstairs &amp; Airdrie</span></li>
+  </ul>
+</section>
 
-<section class="scroller" id="scroller" style="--n:5" aria-label="Sutherland Farm garlic">
-  <div class="stage">
-    <div class="blob" id="blob"></div>
+<section class="section">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">What we sell</span>
+      <h2>Three simple ways to buy.</h2>
+      <p class="lead">One kind of garlic, grown well. Choose a single bulb, a bag by the pound, or a braid.</p>
+    </div>
+    <div class="products">
+      <article class="product">
+        <div class="product-img"><img src="images/bulbs-closeup.jpg" alt="Close-up of large purple-streaked garlic bulbs" loading="lazy"></div>
+        <div class="product-body">
+          <h3>Single bulb</h3>
+          <div class="price">$3 <small>each</small></div>
+          <p>Perfect for trying our garlic for the first time, or for a week of cooking.</p>
+          <span class="pill">Sold out for 2026</span>
+        </div>
+      </article>
+      <article class="product">
+        <div class="product-img"><img src="images/bag-and-bowl.jpg" alt="Sutherland Farm kraft bag beside a wooden bowl full of garlic" loading="lazy"></div>
+        <div class="product-body">
+          <h3>By the pound</h3>
+          <div class="price">$15 <small>per pound</small></div>
+          <p>The best value. Stock up for the winter, or share a bag with family.</p>
+          <span class="pill">Sold out for 2026</span>
+        </div>
+      </article>
+      <article class="product">
+        <div class="product-img"><img src="images/basket.jpg" alt="Garlic bulbs in a wooden basket" loading="lazy"></div>
+        <div class="product-body">
+          <h3>Garlic braid</h3>
+          <div class="price">$6.99 <small>each</small></div>
+          <p>Hand-tied on the farm. Hang it in the kitchen and use it as you go. Makes a great gift.</p>
+          <span class="pill">Sold out for 2026</span>
+        </div>
+      </article>
+    </div>
+    <div class="products-cta">
+      <a class="btn btn-primary" href="#waitlist">Reserve yours for 2027 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
 
-    <div class="track" id="track">
-      <button class="card float" data-label="Siberian Hardneck · 2026" data-name="Single <em>bulb</em>" data-meta="$3 each · sold out for 2026" aria-label="Single bulb, $3 each. Hover or tap to watch the skin peel away.">
-        <div class="inner">
-          <div class="face front">
-            <div class="bob">
-              <div class="bulb" id="bulb">
-                <img class="bare" src="images/bulb-bare.webp" alt="">
-                <img class="bare2" src="images/bulb-bare-hole.webp" alt="">
-                <img class="cl" src="images/bare-clove.webp" alt="" style="left:46.41%;top:43.92%;width:38.40%">
-                <canvas class="skin" width="900" height="1200" role="img" aria-label="A single Siberian Hardneck garlic bulb with its stem"></canvas>
-                <div class="fl" data-hx="28.11" data-hy="56.67" data-w="22.00" data-bx="154" data-by="570" data-sw="198" data-sh="220" data-tx="0.7" data-ty="69.4" data-fr="-44" data-d="31" data-ox="93" data-oy="63" data-ux="-0.959" data-uy="-0.282" data-s0="0.97" style="--x:28.11%;--y:56.67%;--w:22.00%"><div class="hg" style="transform-origin:93% 63%"><img src="images/shards/s07.webp" alt=""><i class="sd" style="--ga:-74deg;-webkit-mask-image:url(images/shards/s07.webp);mask-image:url(images/shards/s07.webp)"></i></div></div>
-                <div class="fl" data-hx="43.39" data-hy="44.17" data-w="13.22" data-bx="331" data-by="490" data-sw="119" data-sh="80" data-tx="22.0" data-ty="22.7" data-fr="57" data-d="58" data-ox="62" data-oy="93" data-ux="-0.275" data-uy="-0.961" data-s0="1.07" style="--x:43.39%;--y:44.17%;--w:13.22%"><div class="hg" style="transform-origin:62% 93%"><img src="images/shards/s01.webp" alt=""><i class="sd" style="--ga:-16deg;-webkit-mask-image:url(images/shards/s01.webp);mask-image:url(images/shards/s01.webp)"></i></div></div>
-                <div class="fl" data-hx="56.94" data-hy="49.42" data-w="23.89" data-bx="405" data-by="508" data-sw="215" data-sh="170" data-tx="69.4" data-ty="40.1" data-fr="43" data-d="87" data-ox="32" data-oy="91" data-ux="0.396" data-uy="-0.918" data-s0="1.14" style="--x:56.94%;--y:49.42%;--w:23.89%"><div class="hg" style="transform-origin:32% 91%"><img src="images/shards/s08.webp" alt=""><i class="sd" style="--ga:23deg;-webkit-mask-image:url(images/shards/s08.webp);mask-image:url(images/shards/s08.webp)"></i></div></div>
-                <div class="fl" data-hx="54.28" data-hy="62.25" data-w="15.00" data-bx="421" data-by="649" data-sw="135" data-sh="196" data-tx="102.9" data-ty="91.2" data-fr="-39" data-d="183" data-ox="6" data-oy="40" data-ux="0.974" data-uy="0.228" data-s0="0.99" style="--x:54.28%;--y:62.25%;--w:15.00%"><div class="hg" style="transform-origin:6% 40%"><img src="images/shards/s19.webp" alt=""><i class="sd" style="--ga:103deg;-webkit-mask-image:url(images/shards/s19.webp);mask-image:url(images/shards/s19.webp)"></i></div></div>
-                <div class="fl" data-hx="76.39" data-hy="58.00" data-w="15.44" data-bx="618" data-by="621" data-sw="139" data-sh="150" data-tx="124.1" data-ty="71.2" data-fr="-52" data-d="243" data-ox="6" data-oy="58" data-ux="0.985" data-uy="-0.174" data-s0="1.11" style="--x:76.39%;--y:58.00%;--w:15.44%"><div class="hg" style="transform-origin:6% 58%"><img src="images/shards/s03.webp" alt=""><i class="sd" style="--ga:80deg;-webkit-mask-image:url(images/shards/s03.webp);mask-image:url(images/shards/s03.webp)"></i></div></div>
-                <div class="fl" data-hx="42.11" data-hy="51.62" data-w="16.22" data-bx="306" data-by="541" data-sw="146" data-sh="157" data-tx="5.6" data-ty="-3.4" data-fr="70" data-d="277" data-ox="73" data-oy="89" data-ux="-0.514" data-uy="-0.858" data-s0="1.06" style="--x:42.11%;--y:51.62%;--w:16.22%"><div class="hg" style="transform-origin:73% 89%"><img src="images/shards/s23.webp" alt=""><i class="sd" style="--ga:-31deg;-webkit-mask-image:url(images/shards/s23.webp);mask-image:url(images/shards/s23.webp)"></i></div></div>
-                <div class="fl" data-hx="62.72" data-hy="57.12" data-w="23.00" data-bx="461" data-by="624" data-sw="207" data-sh="123" data-tx="99.8" data-ty="47.6" data-fr="-33" data-d="361" data-ox="9" data-oy="69" data-ux="0.909" data-uy="-0.417" data-s0="1.09" style="--x:62.72%;--y:57.12%;--w:23.00%"><div class="hg" style="transform-origin:9% 69%"><img src="images/shards/s18.webp" alt=""><i class="sd" style="--ga:65deg;-webkit-mask-image:url(images/shards/s18.webp);mask-image:url(images/shards/s18.webp)"></i></div></div>
-                <div class="fl" data-hx="78.28" data-hy="66.46" data-w="12.33" data-bx="649" data-by="710" data-sw="111" data-sh="175" data-tx="129.1" data-ty="106.7" data-fr="56" data-d="343" data-ox="6" data-oy="40" data-ux="0.974" data-uy="0.228" data-s0="1.02" style="--x:78.28%;--y:66.46%;--w:12.33%"><div class="hg" style="transform-origin:6% 40%"><img src="images/shards/s16.webp" alt=""><i class="sd" style="--ga:103deg;-webkit-mask-image:url(images/shards/s16.webp);mask-image:url(images/shards/s16.webp)"></i></div></div>
-                <div class="fl" data-hx="33.78" data-hy="64.96" data-w="17.33" data-bx="226" data-by="696" data-sw="156" data-sh="167" data-tx="2.6" data-ty="99.4" data-fr="-66" data-d="411" data-ox="93" data-oy="38" data-ux="-0.962" data-uy="0.273" data-s0="1.02" style="--x:33.78%;--y:64.96%;--w:17.33%"><div class="hg" style="transform-origin:93% 38%"><img src="images/shards/s15.webp" alt=""><i class="sd" style="--ga:-106deg;-webkit-mask-image:url(images/shards/s15.webp);mask-image:url(images/shards/s15.webp)"></i></div></div>
-                <div class="fl" data-hx="43.44" data-hy="59.83" data-w="12.67" data-bx="334" data-by="638" data-sw="114" data-sh="160" data-tx="-25.4" data-ty="55.7" data-fr="8" data-d="475" data-ox="93" data-oy="64" data-ux="-0.947" data-uy="-0.321" data-s0="1.09" style="--x:43.44%;--y:59.83%;--w:12.67%"><div class="hg" style="transform-origin:93% 64%"><img src="images/shards/s14.webp" alt=""><i class="sd" style="--ga:-71deg;-webkit-mask-image:url(images/shards/s14.webp);mask-image:url(images/shards/s14.webp)"></i></div></div>
-                <div class="fl" data-hx="49.67" data-hy="70.88" data-w="17.56" data-bx="368" data-by="756" data-sw="158" data-sh="189" data-tx="99.3" data-ty="125.2" data-fr="-26" data-d="569" data-ox="51" data-oy="5" data-ux="-0.027" data-uy="1.000" data-s0="0.97" style="--x:49.67%;--y:70.88%;--w:17.56%"><div class="hg" style="transform-origin:51% 5%"><img src="images/shards/s04.webp" alt=""><i class="sd" style="--ga:-178deg;-webkit-mask-image:url(images/shards/s04.webp);mask-image:url(images/shards/s04.webp)"></i></div></div>
-                <div class="fl" data-hx="67.56" data-hy="67.88" data-w="20.22" data-bx="517" data-by="713" data-sw="182" data-sh="203" data-tx="105.2" data-ty="108.8" data-fr="64" data-d="567" data-ox="9" data-oy="30" data-ux="0.900" data-uy="0.436" data-s0="0.96" style="--x:67.56%;--y:67.88%;--w:20.22%"><div class="hg" style="transform-origin:9% 30%"><img src="images/shards/s11.webp" alt=""><i class="sd" style="--ga:116deg;-webkit-mask-image:url(images/shards/s11.webp);mask-image:url(images/shards/s11.webp)"></i></div></div>
-                <div class="fl" data-hx="67.22" data-hy="77.12" data-w="21.11" data-bx="510" data-by="822" data-sw="190" data-sh="207" data-tx="120.4" data-ty="127.9" data-fr="7" data-d="623" data-ox="21" data-oy="15" data-ux="0.637" data-uy="0.771" data-s0="1.02" style="--x:67.22%;--y:77.12%;--w:21.11%"><div class="hg" style="transform-origin:21% 15%"><img src="images/shards/s10.webp" alt=""><i class="sd" style="--ga:140deg;-webkit-mask-image:url(images/shards/s10.webp);mask-image:url(images/shards/s10.webp)"></i></div></div>
-                <div class="fl" data-hx="59.22" data-hy="80.00" data-w="18.89" data-bx="448" data-by="873" data-sw="170" data-sh="174" data-tx="1.9" data-ty="125.8" data-fr="-70" data-d="720" data-ox="34" data-oy="8" data-ux="0.350" data-uy="0.937" data-s0="0.98" style="--x:59.22%;--y:80.00%;--w:18.89%"><div class="hg" style="transform-origin:34% 8%"><img src="images/shards/s17.webp" alt=""><i class="sd" style="--ga:160deg;-webkit-mask-image:url(images/shards/s17.webp);mask-image:url(images/shards/s17.webp)"></i></div></div>
-                <div class="fl" data-hx="33.72" data-hy="75.29" data-w="19.44" data-bx="216" data-by="849" data-sw="175" data-sh="109" data-tx="-26.5" data-ty="117.9" data-fr="-9" data-d="732" data-ox="80" data-oy="16" data-ux="-0.663" data-uy="0.749" data-s0="1.08" style="--x:33.72%;--y:75.29%;--w:19.44%"><div class="hg" style="transform-origin:80% 16%"><img src="images/shards/s22.webp" alt=""><i class="sd" style="--ga:-138deg;-webkit-mask-image:url(images/shards/s22.webp);mask-image:url(images/shards/s22.webp)"></i></div></div>
-                <div class="fl" data-hx="21.94" data-hy="74.50" data-w="13.00" data-bx="139" data-by="774" data-sw="117" data-sh="240" data-tx="-25.9" data-ty="88.9" data-fr="-23" data-d="797" data-ox="88" data-oy="26" data-ux="-0.851" data-uy="0.526" data-s0="1.04" style="--x:21.94%;--y:74.50%;--w:13.00%"><div class="hg" style="transform-origin:88% 26%"><img src="images/shards/s02.webp" alt=""><i class="sd" style="--ga:-122deg;-webkit-mask-image:url(images/shards/s02.webp);mask-image:url(images/shards/s02.webp)"></i></div></div>
-                <div class="fl" data-hx="33.83" data-hy="80.50" data-w="19.89" data-bx="215" data-by="885" data-sw="179" data-sh="162" data-tx="-8.5" data-ty="111.8" data-fr="13" data-d="840" data-ox="74" data-oy="12" data-ux="-0.538" data-uy="0.843" data-s0="1.02" style="--x:33.83%;--y:80.50%;--w:19.89%"><div class="hg" style="transform-origin:74% 12%"><img src="images/shards/s09.webp" alt=""><i class="sd" style="--ga:-147deg;-webkit-mask-image:url(images/shards/s09.webp);mask-image:url(images/shards/s09.webp)"></i></div></div>
-                <div class="fl" data-hx="39.06" data-hy="84.29" data-w="14.78" data-bx="285" data-by="907" data-sw="133" data-sh="209" data-tx="-12.2" data-ty="124.1" data-fr="-42" data-d="968" data-ox="65" data-oy="8" data-ux="-0.339" data-uy="0.941" data-s0="1.04" style="--x:39.06%;--y:84.29%;--w:14.78%"><div class="hg" style="transform-origin:65% 8%"><img src="images/shards/s20.webp" alt=""><i class="sd" style="--ga:-160deg;-webkit-mask-image:url(images/shards/s20.webp);mask-image:url(images/shards/s20.webp)"></i></div></div>
-                <div class="fl" data-hx="48.50" data-hy="85.29" data-w="10.78" data-bx="388" data-by="925" data-sw="97" data-sh="197" data-tx="-0.8" data-ty="39.3" data-fr="-66" data-d="1014" data-ox="52" data-oy="5" data-ux="-0.047" data-uy="0.999" data-s0="1.05" style="--x:48.50%;--y:85.29%;--w:10.78%"><div class="hg" style="transform-origin:52% 5%"><img src="images/shards/s12.webp" alt=""><i class="sd" style="--ga:-177deg;-webkit-mask-image:url(images/shards/s12.webp);mask-image:url(images/shards/s12.webp)"></i></div></div>
-                <div class="fl" data-hx="75.44" data-hy="88.17" data-w="16.22" data-bx="606" data-by="971" data-sw="146" data-sh="174" data-tx="129.4" data-ty="43.2" data-fr="-38" data-d="1076" data-ox="24" data-oy="13" data-ux="0.582" data-uy="0.813" data-s0="1.10" style="--x:75.44%;--y:88.17%;--w:16.22%"><div class="hg" style="transform-origin:24% 13%"><img src="images/shards/s13.webp" alt=""><i class="sd" style="--ga:144deg;-webkit-mask-image:url(images/shards/s13.webp);mask-image:url(images/shards/s13.webp)"></i></div></div>
-                <div class="fl" data-hx="79.83" data-hy="80.50" data-w="11.67" data-bx="666" data-by="874" data-sw="105" data-sh="184" data-tx="121.1" data-ty="89.4" data-fr="25" data-d="1044" data-ox="16" data-oy="21" data-ux="0.762" data-uy="0.647" data-s0="1.06" style="--x:79.83%;--y:80.50%;--w:11.67%"><div class="hg" style="transform-origin:16% 21%"><img src="images/shards/s06.webp" alt=""><i class="sd" style="--ga:130deg;-webkit-mask-image:url(images/shards/s06.webp);mask-image:url(images/shards/s06.webp)"></i></div></div>
-                <div class="fl" data-hx="62.33" data-hy="90.83" data-w="18.22" data-bx="479" data-by="1024" data-sw="164" data-sh="132" data-tx="98.2" data-ty="70.7" data-fr="38" data-d="1102" data-ox="36" data-oy="7" data-ux="0.301" data-uy="0.954" data-s0="1.08" style="--x:62.33%;--y:90.83%;--w:18.22%"><div class="hg" style="transform-origin:36% 7%"><img src="images/shards/s00.webp" alt=""><i class="sd" style="--ga:162deg;-webkit-mask-image:url(images/shards/s00.webp);mask-image:url(images/shards/s00.webp)"></i></div></div>
-                <div class="fl" data-hx="30.83" data-hy="89.38" data-w="16.56" data-bx="203" data-by="996" data-sw="149" data-sh="153" data-tx="-8.3" data-ty="84.4" data-fr="0" data-d="1142" data-ox="71" data-oy="10" data-ux="-0.458" data-uy="0.889" data-s0="0.96" style="--x:30.83%;--y:89.38%;--w:16.56%"><div class="hg" style="transform-origin:71% 10%"><img src="images/shards/s05.webp" alt=""><i class="sd" style="--ga:-153deg;-webkit-mask-image:url(images/shards/s05.webp);mask-image:url(images/shards/s05.webp)"></i></div></div>
-                <div class="fl" data-hx="45.67" data-hy="93.25" data-w="16.89" data-bx="335" data-by="1080" data-sw="152" data-sh="78" data-tx="2.2" data-ty="109.8" data-fr="52" data-d="1250" data-ox="55" data-oy="5" data-ux="-0.102" data-uy="0.995" data-s0="1.01" style="--x:45.67%;--y:93.25%;--w:16.89%"><div class="hg" style="transform-origin:55% 5%"><img src="images/shards/s21.webp" alt=""><i class="sd" style="--ga:-174deg;-webkit-mask-image:url(images/shards/s21.webp);mask-image:url(images/shards/s21.webp)"></i></div></div>
-              </div>
-              <div class="shadow"></div>
-            </div>
+<section class="section section-paper">
+  <div class="wrap split">
+    <div class="split-img"><img src="images/bowl-rustic.jpg" alt="A rustic bowl of hardneck garlic on a wooden table" loading="lazy"></div>
+    <div>
+      <span class="eyebrow">Why local garlic</span>
+      <h2>Not the garlic you find at the grocery store.</h2>
+      <p class="lead">Much of the garlic sold in stores is imported from overseas. Ours is grown a few minutes down the road.</p>
+      <ul class="points">
+        <li><span class="num">1</span><div><h3>Bigger cloves, easy to peel</h3><p>Siberian Hardneck grows a handful of large cloves per bulb. Less fiddling, more garlic.</p></div></li>
+        <li><span class="num">2</span><div><h3>Rich, full flavour</h3><p>Bold and warm when fresh, and it mellows nicely the longer it’s stored.</p></div></li>
+        <li><span class="num">3</span><div><h3>Grown for our winters</h3><p>A cold-hardy variety, planted by hand in Alberta soil every fall.</p></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section section-dark">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">How it works</span>
+      <h2>Reserving is easy.</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="step-num">01</span><h3>Join the waitlist</h3><p>Fill in the short form below, or simply call or text us. It takes a minute.</p></div>
+      <div class="step"><span class="step-num">02</span><h3>We contact you</h3><p>When the 2027 harvest is cured and ready, we reach out in the order people signed up.</p></div>
+      <div class="step"><span class="step-num">03</span><h3>We deliver</h3><p>We confirm your order and bring it to you in Carstairs or Airdrie.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="season">
+  <img src="images/field-sunset.jpg" alt="" loading="lazy">
+  <div class="wrap">
+    <span class="eyebrow">A full year in the making</span>
+    <h2 style="max-width:14em">Every bulb spends ten months in the ground.</h2>
+    <ol class="timeline">
+      <li><b>October</b><span>Cloves planted by hand</span></li>
+      <li><b>Winter</b><span>Resting under the snow</span></li>
+      <li><b>June</b><span>Scapes appear</span></li>
+      <li><b>Summer</b><span>Pulled and cured</span></li>
+      <li><b>Late summer</b><span>Ready for you</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap split flip">
+    <div class="split-img"><img src="images/farm-yard.jpg" alt="The Sutherland Farm garden rows and white shed" loading="lazy"></div>
+    <div>
+      <span class="eyebrow">Our story</span>
+      <h2>A Carstairs family farm since 1919.</h2>
+      <p class="lead">Small rows, careful hands and a lot of patience. Get to know the family behind the garlic.</p>
+      <a class="btn btn-ghost" href="our-story.html">Read our story <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<section class="section waitlist" id="waitlist">
+  <div class="wrap waitlist-grid">
+    <div>
+      <span class="eyebrow">The 2027 waitlist</span>
+      <h2>Be first in line for next year’s garlic.</h2>
+      <p class="lead">Our garlic sells out every year. Add your name and we’ll contact you, in the order you signed up, as soon as the 2027 harvest is cured and ready.</p>
+      <ul class="waitlist-promise">
+        <li>It’s free, and there’s no commitment to buy.</li>
+        <li>We’ll call, text or email you, whichever you prefer.</li>
+        <li>Delivery to Carstairs and Airdrie.</li>
+      </ul>
+      <p style="margin-top:28px">Rather talk to a person? <a href="tel:+14038998484" style="color:var(--kraft);font-weight:500">Call or text 403-899-8484</a></p>
+    </div>
+    <div class="form-card">
+      <form class="waitlist-form" novalidate>
+        <h3>Join the waitlist</h3>
+        <div class="form-error" role="alert"></div>
+        <div class="field">
+          <label for="wl-name-1">Your name</label>
+          <input id="wl-name-1" name="name" autocomplete="name" required>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="wl-phone-1">Phone</label>
+            <input id="wl-phone-1" name="phone" type="tel" autocomplete="tel" inputmode="tel">
+          </div>
+          <div class="field">
+            <label for="wl-email-1">Email <span class="hint">(optional)</span></label>
+            <input id="wl-email-1" name="email" type="email" autocomplete="email" inputmode="email">
           </div>
         </div>
-      </button>
-      <button class="card round" data-label="Siberian Hardneck · 2026" data-name="By the <em>pound</em>" data-meta="$15 per lb · pick-up or local delivery">
-        <div class="inner">
-          <div class="face front"><img src="images/bags.jpg" alt="Sutherland Farm kraft bags with bundles of garlic"><span class="chip">By the pound</span></div>
-          <div class="face back"><span class="label">Kraft bag</span><h3>By the pound</h3><div class="price">$15 / lb</div><p>Packed in our stamped kraft bags. Pick up at the farm or local delivery in Carstairs and Airdrie.</p></div>
+        <div class="field">
+          <label for="wl-town-1">Where should we deliver?</label>
+          <select id="wl-town-1" name="town">
+            <option>Carstairs</option>
+            <option>Airdrie</option>
+            <option>Somewhere else (we’ll talk)</option>
+          </select>
         </div>
-      </button>
-      <button class="card arch" data-label="Harvest 2026" data-name="Harvest <em>2026</em>" data-meta="Last of the crop went fast">
-        <div class="inner">
-          <div class="face front"><img src="images/garlic-bowl.jpg" alt="A wooden bowl piled with harvested garlic"><span class="chip">Harvest 2026</span></div>
-          <div class="face back"><span class="label">Sold out</span><h3>Harvest 2026</h3><p>The 2026 garlic is gone. It sold out before we ran out of people asking.</p></div>
+        <fieldset class="field">
+          <legend>What would you like? <span class="hint">(pick any)</span></legend>
+          <div class="checks">
+            <label class="check"><input type="checkbox" name="wants" value="Single bulbs"><span>Single bulbs</span></label>
+            <label class="check"><input type="checkbox" name="wants" value="By the pound"><span>By the pound</span></label>
+            <label class="check"><input type="checkbox" name="wants" value="Braids"><span>Braids</span></label>
+          </div>
+        </fieldset>
+        <div class="field">
+          <label for="wl-amount-1">Roughly how much? <span class="hint">(optional)</span></label>
+          <input id="wl-amount-1" name="amount" placeholder="For example: 3 lb and 2 braids">
         </div>
-      </button>
-      <button class="card round" data-label="Fall 2026" data-name="Planted <em>by hand</em>" data-meta="Every clove, one at a time">
-        <div class="inner">
-          <div class="face front"><img src="images/planting.jpg" alt="Planting garlic cloves by hand in the fall"><span class="chip">Planted by hand</span></div>
-          <div class="face back"><span class="label">Fall 2026</span><h3>Planted by hand</h3><p>Every clove of the 2027 crop was planted by hand this fall, row by row.</p></div>
-        </div>
-      </button>
-      <button class="card arch" data-label="The 2027 crop" data-name="Tucked in <em>for winter</em>" data-meta="Resting under straw. See you in spring.">
-        <div class="inner">
-          <div class="face front"><img src="images/straw-beds.jpg" alt="Garlic beds covered in straw for winter"><span class="chip">Tucked in</span></div>
-          <div class="face back"><span class="label">2027 crop</span><h3>Resting under straw</h3><p>More varieties are coming for the 2027 season. See you in spring.</p></div>
-        </div>
-      </button>
-      <img class="clove" id="clove" src="images/bare-clove.webp" alt="">
-      <img class="clove" id="cloveB" src="images/clove-back.webp" alt="">
-    </div>
-
-    <div class="copy" id="copy" aria-live="polite">
-      <span class="label" id="cLabel"></span>
-      <div class="name" id="cName"></div>
-      <div class="meta" id="cMeta"></div>
-    </div>
-
-    <div class="foot">
-      <span class="count" id="count">01 / 05</span>
-      <span class="cue" id="cue">Scroll to discover</span>
-      <span class="hint" id="hint">Hover a card to turn it</span>
+        <button class="btn btn-primary" type="submit">Add me to the 2027 waitlist</button>
+        <p class="form-note">We only use your details to contact you about garlic.</p>
+      </form>
+      <div class="form-success" role="status">
+        <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></div>
+        <h3>You’re on the list, <span data-first></span>.</h3>
+        <p>We’ll be in touch when the 2027 garlic is ready. Thank you for supporting a local family farm.</p>
+      </div>
     </div>
   </div>
 </section>
 </main>
-
-<script>
-(function(){
-  const sc=document.getElementById('scroller'), cards=[...document.querySelectorAll('.card')], n=cards.length;
-  const blob=document.getElementById('blob');
-  const copy=document.getElementById('copy'), cL=document.getElementById('cLabel'), cN=document.getElementById('cName'), cM=document.getElementById('cMeta');
-  const count=document.getElementById('count'), cue=document.getElementById('cue'), hint=document.getElementById('hint');
-  const calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
-  if(matchMedia('(hover:none)').matches) hint.textContent='Tap a card to turn it';
-
-  /* Endless loop: the page is a very tall scroll area. Position is measured in "cards" (pos).
-     The layout only depends on pos modulo n, so when you drift near either end we silently
-     jump the scrollbar by a whole number of laps and nothing visibly changes. */
-  const LAPS=40, SHIFT=n*10;
-  let step=innerHeight*.8, cur=0, active=-1, raf=0, started=false, moved=false, blobDeg=-7;
-  const mod=(a,m)=>((a%m)+m)%m;
-
-  function size(){ step=Math.max(innerHeight*.8,360); sc.style.height=(LAPS*n*step+innerHeight)+'px'; }
-  function setActive(i){
-    if(i===active) return; const first=active===-1; active=i;
-    copy.classList.add('swap');
-    setTimeout(()=>{const c=cards[i].dataset;cL.textContent=c.label;cN.innerHTML=c.name;cM.textContent=c.meta;copy.classList.remove('swap')},first?0:180);
-    count.textContent=String(i+1).padStart(2,'0')+' / '+String(n).padStart(2,'0');
-  }
-  function layout(){
-    const vw=innerWidth, spacing=Math.max(vw<700?vw*.8:Math.min(vw*.4,580),200);
-    cards.forEach((c,i)=>{
-      let d=mod(i-cur+n/2,n)-n/2;           /* shortest signed distance around the loop */
-      const a=Math.abs(d);
-      const x=d*spacing, y=a*a*16, rot=d*9-(a<1?(1-a)*3:0), sc_=Math.max(.55,1-Math.min(a,2)*.2);
-      c.style.transform='translate3d('+x.toFixed(1)+'px,'+y.toFixed(1)+'px,0) rotate('+rot.toFixed(2)+'deg) scale('+sc_.toFixed(3)+')';
-      c.style.zIndex=String(100-Math.round(a*10));
-      c.style.opacity=a>2.2?'0':String(Math.max(0,1-Math.max(0,a-1.7)*.8));
-      c.style.visibility=a>2.3?'hidden':'visible';
-    });
-    blobDeg=-7+3*Math.sin(cur/n*Math.PI*2);
-    blob.style.transform='translateX(-50%) rotate('+blobDeg.toFixed(2)+'deg)';
-    setActive(mod(Math.round(cur),n));
-    if(peeling && mod(Math.round(cur),n)!==0) resetPeel();
-  }
-  function frame(){
-    raf=0;
-    let pos=scrollY/step;
-    if(pos<n*3 || pos>LAPS*n-n*3){          /* near an end: jump a whole number of laps toward the middle */
-      const dir=pos<n*3?1:-1;
-      scrollTo(0,scrollY+dir*SHIFT*step); cur+=dir*SHIFT; pos+=dir*SHIFT;
-    }
-    cur=calm?pos:cur+(pos-cur)*.14;
-    if(Math.abs(pos-cur)<.001) cur=pos;
-    if(!moved && Math.abs(pos-startPos)>.15){moved=true;cue.style.opacity=0}
-    layout();
-    if(cur!==pos) raf=requestAnimationFrame(frame);
-  }
-  function kick(){if(!raf) raf=requestAnimationFrame(frame)}
-
-  /* ---- single bulb: shake, peel the skin off in real flakes that float around it, a clove tips out of the bulb and falls, bounces on the black shape and slides away, then the flakes fly home ---- */
-  const stage=document.querySelector('.stage'), bulb=document.getElementById('bulb'), clove=document.getElementById('clove'), cloveB=document.getElementById('cloveB'), bulbCard=cards[0];
-  let peeling=false, timers=[], cRaf=0;
-  const centred=()=>mod(Math.round(cur),n)===0;
-  const D2R=Math.PI/180;
-
-  /* the skin is drawn on a canvas. Each flake is a cut-out of that very photo, so when a flake lifts off, its exact outline is erased from the canvas and the bare bulb shows through underneath */
-  const skinCv=bulb.querySelector('canvas.skin'), sctx=skinCv.getContext('2d'), skinImg=new Image(), CW=skinCv.width, CH=skinCv.height;
-  function drawSkin(){ sctx.globalCompositeOperation='source-over'; sctx.clearRect(0,0,CW,CH); if(skinImg.complete&&skinImg.naturalWidth) sctx.drawImage(skinImg,0,0,CW,CH) }
-  function cutHole(p){
-    if(!p.img.naturalWidth) return;
-    sctx.globalCompositeOperation='destination-out';
-    for(const [dx,dy] of [[0,0],[1.6,0],[-1.6,0],[0,1.6],[0,-1.6]]) sctx.drawImage(p.img,p.bx+dx,p.by+dy,p.sw,p.sh);
-    sctx.globalCompositeOperation='source-over';
-  }
-  skinImg.onload=drawSkin; skinImg.src='images/bulb.webp';
-  ['images/bulb-bare.webp','images/bulb-bare-hole.webp','images/bare-clove.webp','images/clove-back.webp'].forEach(u=>{new Image().src=u});
-
-  const pieces=[...bulb.querySelectorAll('.fl')].map((el,i)=>{ const d=el.dataset; return {
-    el, hg:el.firstElementChild, img:el.querySelector('img'), sd:el.querySelector('.sd'),
-    hx:+d.hx, hy:+d.hy, bx:+d.bx, by:+d.by, sw:+d.sw, sh:+d.sh, X:+d.tx, Y:+d.ty, fr:+d.fr, d:+d.d, ux:+d.ux, uy:+d.uy, s0:+d.s0,
-    ph:i*1.7, wx:.32+((i*37)%10)/22, wy:.28+((i*53)%10)/26, ax:1.2+(i%3)*.6, ay:1.2+((i+2)%3)*.6,
-    x:0,y:0,r:0,s:1,lf:0,tw:0, vx:0,vy:0,vr:0,vs:0,vlf:0,vtw:0, on:0
-  }});
-  const maxD=Math.max(...pieces.map(p=>p.d));
-  let mode='whole', modeT=0, pRaf=0, pLast=0;     /* whole -> shaking -> floating -> (clove falls) -> returning -> whole */
-  function drawPieces(u,shade){
-    for(const p of pieces){
-      p.el.style.transform='translate(-50%,-50%) translate('+(p.x*u).toFixed(2)+'px,'+(p.y*u).toFixed(2)+'px) rotate('+p.r.toFixed(2)+'deg) scale('+p.s.toFixed(4)+')';
-      p.hg.style.transform='perspective(700px) rotate3d('+(-p.uy).toFixed(3)+','+p.ux.toFixed(3)+',0,'+p.lf.toFixed(2)+'deg) rotate3d('+p.ux.toFixed(3)+','+p.uy.toFixed(3)+',0,'+p.tw.toFixed(2)+'deg)';
-      if(shade) p.sd.style.opacity=Math.min(.85,Math.abs(Math.sin(p.lf*D2R))*.8+Math.abs(Math.sin(p.tw*D2R))*.35).toFixed(3);
-    }
-  }
-  function spring(p,key,vkey,target,k,zeta,dt){ p[vkey]+=(k*(target-p[key])-2*zeta*Math.sqrt(k)*p[vkey])*dt; p[key]+=p[vkey]*dt }
-  function tickPieces(t){
-    const dt=Math.min((t-pLast)/1000,.033); pLast=t; const now=t-modeT;
-    const bw=bulb.offsetWidth, u=bw/100, ratio=bulb.offsetHeight/bw, tt=t/1000; let settled=true;
-    for(const p of pieces){
-      if(mode==='floating'){
-        if(now<p.d) continue;                                                           /* still part of the skin */
-        if(!p.on){                                                                      /* lifts off exactly where it sat */
-          p.on=1; p.el.style.opacity=1; cutHole(p);
-          p.vx=(p.X-p.hx)*.07; p.vy=(p.Y-p.hy*ratio)*.07-3; p.vlf=300; p.vr=(p.fr>0?1:-1)*34;
-        }
-        spring(p,'x','vx',(p.X-p.hx)+Math.sin(tt*p.wx+p.ph)*p.ax,12,.78,dt);           /* slow, soft drift around the bulb */
-        spring(p,'y','vy',(p.Y-p.hy*ratio)+Math.cos(tt*p.wy+p.ph*1.3)*p.ay,12,.78,dt);
-        spring(p,'r','vr',p.fr+Math.sin(tt*p.wx*1.2+p.ph)*7,10,.8,dt);
-        spring(p,'s','vs',p.s0*1.05,14,.85,dt);
-        spring(p,'lf','vlf',24+13*Math.sin(tt*p.wx*1.1+p.ph),70,.42,dt);                /* hinge lifts with a little spring, like paper peeling */
-        spring(p,'tw','vtw',17*Math.sin(tt*p.wy*.9+p.ph*2),18,.7,dt);
-      }else{                                                                            /* returning: back to the exact spot, one after another */
-        if(now<(maxD-p.d)*.55){settled=false; spring(p,'x','vx',p.x,0,1,dt); continue}
-        spring(p,'x','vx',0,170,.96,dt); spring(p,'y','vy',0,170,.96,dt); spring(p,'r','vr',0,170,.96,dt); spring(p,'s','vs',1,170,.96,dt);
-        spring(p,'lf','vlf',0,220,.9,dt); spring(p,'tw','vtw',0,220,.9,dt);
-        if(Math.abs(p.x)>.08||Math.abs(p.y)>.08||Math.abs(p.r)>.4||Math.abs(p.lf)>.4||Math.abs(p.tw)>.4||Math.abs(p.s-1)>.003||Math.abs(p.vx)+Math.abs(p.vy)>.6) settled=false;
-      }
-    }
-    drawPieces(u,true);
-    if(mode==='floating' && now>maxD+520 && !bulb.classList.contains('gone')) bulb.classList.add('gone');   /* leftover stem skin fades so the bare stem is seamless */
-    if(mode==='returning' && (settled||now>3000)){ finishReturn(); return }
-    pRaf=requestAnimationFrame(tickPieces);
-  }
-  function startPieces(){cancelAnimationFrame(pRaf); pLast=performance.now(); pRaf=requestAnimationFrame(tickPieces)}
-  function clearPieces(){for(const p of pieces){p.x=p.y=p.r=p.lf=p.tw=p.vx=p.vy=p.vr=p.vs=p.vlf=p.vtw=0;p.s=1;p.on=0;p.el.style.opacity='';p.sd.style.opacity=0} drawPieces(1,false)}
-  function finishReturn(){
-    cancelAnimationFrame(pRaf);
-    for(const p of pieces){p.x=p.y=p.r=p.lf=p.tw=0;p.s=1;p.sd.style.opacity=0}
-    drawPieces(1,false); drawSkin(); bulb.classList.remove('gone');   /* every flake is home: the full skin photo fades in under them (identical pixels), then they step aside */
-    timers.push(setTimeout(()=>{ for(const p of pieces){p.on=0;p.el.style.opacity=''} bulb.classList.remove('show','taken'); mode='whole'; peeling=false },420));
-  }
-  function resetPeel(){
-    peeling=false; mode='whole'; timers.forEach(clearTimeout); timers=[]; cancelAnimationFrame(cRaf); cancelAnimationFrame(pRaf);
-    clearPieces(); drawSkin();
-    bulb.classList.remove('shaking','show','gone','taken'); clove.style.opacity=0; cloveB.style.opacity=0; cN.classList.remove('land');
-  }
-  function playPeel(){
-    if(mode!=='whole'||!centred()) return; peeling=true; mode='shaking';
-    if(calm){bulb.classList.add('show','taken'); sctx.clearRect(0,0,CW,CH); mode='floating'; return}
-    bulb.classList.add('shaking');
-    timers.push(setTimeout(()=>{
-      bulb.classList.remove('shaking'); bulb.classList.add('show');
-      mode='floating'; modeT=performance.now(); startPieces();
-    },750));
-    timers.push(setTimeout(dropClove,750+maxD+1150));
-  }
-  function assemble(){
-    if(mode!=='floating') return;
-    mode='returning'; modeT=performance.now(); startPieces();
-  }
-
-  /* the clove: it is the very clove that sits in the hole. It tips out of the bulb about its base, lets go, then falls as a rigid body: bounces on the tilted black shape, settles and slides off its edge */
-  function dropClove(){
-    if(mode!=='floating') return;
-    const st=stage.getBoundingClientRect(), cl=bulb.querySelector('.cl'), cr=cl.getBoundingClientRect(), bb=bulb.getBoundingClientRect();
-    const W=stage.clientWidth, H=stage.clientHeight, wr=bb.width*.384, hr=wr*738/417, w=wr, h=hr, ROFF=-4*D2R;   /* ONE clove: the same photo sits in the hole and then falls, so nothing can change shape */
-    clove.style.width=wr+'px'; cloveB.style.width=(wr*.926)+'px';
-    const BW=blob.offsetWidth, BH=blob.offsetHeight, hw=BW/2, hh=BH/2, R=BW*.17;
-    const bcx=W/2, bcy=blob.offsetTop+BH/2, th=blobDeg*D2R, co=Math.cos(th), si=Math.sin(th);
-    function sdf(px,py){                                                    /* signed distance to the black rounded shape */
-      const dx=px-bcx, dy=py-bcy, lx=dx*co+dy*si, ly=-dx*si+dy*co;
-      const qx=Math.abs(lx)-(hw-R), qy=Math.abs(ly)-(hh-R), ox=Math.max(qx,0), oy=Math.max(qy,0), len=Math.hypot(ox,oy);
-      const sgx=lx<0?-1:1, sgy=ly<0?-1:1; let nlx,nly;
-      if(len>0){nlx=sgx*ox/len;nly=sgy*oy/len} else if(qx>qy){nlx=sgx;nly=0} else {nlx=0;nly=sgy}
-      return {d:len+Math.min(Math.max(qx,qy),0)-R, nx:nlx*co-nly*si, ny:nlx*si+nly*co};
-    }
-    const circ=[{x:.044*wr,y:.16*hr,r:.389*wr},{x:-.188*wr,y:-.043*hr,r:.259*wr},{x:-.02*wr,y:.4*hr,r:.169*wr},{x:-.323*wr,y:-.186*hr,r:.145*wr},{x:-.373*wr,y:-.271*hr,r:.092*wr}];   /* the clove's shape, as circles */
-    const I=(wr*wr+hr*hr)/12;
-    const cx0=cr.left-st.left+cr.width/2, cy0=cr.top-st.top+cr.height/2;
-    const pvx=cx0-.03*w, pvy=cy0+.46*h;                                     /* it pivots about its base, where it was attached to the plate */
-    const P1=1100, T0=P1-120, DUR=560, TILT=32, G=1900, E=.5, E1=.88, MU=.05;
-    let x=cx0, y=cy0, ang=0, vx=0, vy=0, om=0, sc=1, bounced=false, free=false, last=performance.now(), start=last, px_=x, py_=y, pa_=0;
-    for(const c of [clove,cloveB]) c.style.transition='none';
-    place(0); clove.style.opacity=1;
-    bulb.classList.add('taken');                                           /* same frame: the in-bulb copy hides, this identical one takes over exactly on top of it */
-    function finish(){ clove.style.opacity=0; cloveB.style.opacity=0; timers.push(setTimeout(assemble,500)) }
-    /* as it comes away the clove also turns about its own length: the face we saw in the bulb narrows to an edge, and the back of the clove (a real photo of a clove's other side) opens up. It is never a dissolve, only a turn */
-    function place(el){
-      const q=Math.min(1,Math.max(0,(el-T0)/DUR)), ph=Math.PI*(q*q*(3-2*q)), cs=Math.cos(ph), front=cs>0.035, back=cs<-0.035, w_=Math.max(.035,Math.abs(cs));
-      const k=Math.min(1,el/700), sh=2*(1-k)+'px '+5*(1-k)+'px '+(5+4*k)+'px', br=(.68+.32*Math.pow(Math.abs(cs),.7)).toFixed(3);
-      const f='brightness('+br+') drop-shadow('+sh+' rgba(60,35,15,'+(.42-.04*k).toFixed(2)+'))';
-      const tr=(px,py,ww,hh)=>'translate('+(x-ww/2).toFixed(1)+'px,'+(y-hh/2).toFixed(1)+'px) rotate('+(ang/D2R).toFixed(2)+'deg) scale('+(sc*w_).toFixed(3)+','+sc.toFixed(3)+')';
-      clove.style.transform=tr(0,0,wr,hr); clove.style.filter=f; clove.style.opacity=front?1:0;
-      const wb=wr*.926; cloveB.style.transform=tr(0,0,wb,hr); cloveB.style.filter=f; cloveB.style.opacity=back?1:0;
-    }
-    function step(t){
-      const dt=Math.min((t-last)/1000,.05); last=t; const el=t-start;
-      if(el<P1){                                                            /* phase 1: graceful, slow, tips out about its base */
-        const u=el/P1, e=u*u*(2.2-1.2*u), a=TILT*e*D2R; sc=1+.12*e;
-        const rx=(cx0-pvx)*sc, ry=(cy0-pvy)*sc, c=Math.cos(a), s_=Math.sin(a);
-        px_=x; py_=y; pa_=ang;
-        x=pvx+rx*c-ry*s_; y=pvy+rx*s_+ry*c; ang=a;
-        place(el); cRaf=requestAnimationFrame(step); return;
-      }
-      if(!free){free=true; const d0=Math.max(dt,.008); vx=(x-px_)/d0*.6+bb.width*.12; vy=(y-py_)/d0*.6-390; om=(ang-pa_)/d0*.6+.9}   /* it lets go */
-      const n=6, h2=dt/n;
-      for(let i=0;i<n;i++){
-        vy+=G*h2; x+=vx*h2; y+=vy*h2; ang+=om*h2;
-        const cs=Math.cos(ang), sn=Math.sin(ang);
-        for(const c of circ){
-          const lx=c.x*sc, ly=c.y*sc, px=x+lx*cs-ly*sn, py=y+lx*sn+ly*cs, s=sdf(px,py), pen=c.r*sc-s.d;
-          if(pen<=0) continue;
-          x+=s.nx*pen*.8; y+=s.ny*pen*.8;
-          const rx=px-x, ry=py-y, vcx=vx-om*ry, vcy=vy+om*rx, vn=vcx*s.nx+vcy*s.ny;
-          if(vn<0){
-            const e=-vn<170?0:(bounced?E:E1), rn=rx*s.ny-ry*s.nx, jn=-(1+e)*vn/(1+rn*rn/I);
-            vx+=jn*s.nx; vy+=jn*s.ny; om+=rn*jn/I;
-            const tx=-s.ny, ty=s.nx, vt=vcx*tx+vcy*ty, rt=rx*ty-ry*tx, lim=MU*jn, jt=Math.max(-lim,Math.min(lim,-vt/(1+rt*rt/I)));
-            vx+=jt*tx; vy+=jt*ty; om+=rt*jt/I;
-            if(!bounced && -vn>230){bounced=true; cN.classList.remove('land'); void cN.offsetWidth; cN.classList.add('land')}
-          }
-        }
-      }
-      place(el);
-      if(y-hr/2>H+80 || x+w<-60 || x-w>W+60 || el>15000){finish();return}
-      cRaf=requestAnimationFrame(step);
-    }
-    cRaf=requestAnimationFrame(step);
-  }
-  bulbCard.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse') playPeel()});
-
-  size();
-  const startPos=LAPS/2*n;                   /* start in the middle, which is card 1 */
-  scrollTo(0,startPos*step); cur=startPos;
-  addEventListener('scroll',kick,{passive:true});
-  addEventListener('resize',()=>{const p=mod(cur,n);size();scrollTo(0,(startPos+p)*step);cur=startPos+p;kick()});
-
-  /* tap/click: a side card slides to the centre, the centred card turns over */
-  cards.forEach((c,i)=>c.addEventListener('click',()=>{
-    const d=mod(i-Math.round(cur)+n/2,n)-n/2;
-    if(d!==0){scrollTo({top:scrollY+d*step,behavior:calm?'auto':'smooth'});return}
-    if(c===bulbCard){ if(matchMedia('(hover:none)').matches) playPeel(); return }
-    c.classList.toggle('flipped');
-  }));
-  addEventListener('scroll',()=>cards.forEach(c=>{ if(!c.matches(':hover')) c.classList.remove('flipped') }),{passive:true});
-
-  frame();
-})();
-</script>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="images/logo.png" alt="Sutherland Farm logo" width="86" height="86">
+        <p>Sutherland Farm<br><span style="font-family:var(--text);font-size:1rem;opacity:.75">Garlic grown in Carstairs, Alberta</span></p>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="our-story.html">Our Story</a></li>
+          <li><a href="the-garlic.html">The Garlic</a></li>
+          <li><a href="how-to-order.html">How to Order</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+14038998484">Call 403-899-8484</a></li>
+          <li><a href="sms:+14038998484">Text 403-899-8484</a></li>
+          <li>Carstairs, Alberta</li>
+          <li><a href="#" data-social="facebook">Facebook</a> · <a href="#" data-social="instagram">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>© <span data-year>2026</span> Sutherland Farm. Est. 1919.</span>
+      <span>Delivering to Carstairs and Airdrie.</span>
+    </div>
+  </div>
+</footer>
+<div class="action-bar">
+  <a class="btn btn-light" href="tel:+14038998484"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg> Call</a>
+  <a class="btn btn-primary" href="#waitlist" style="border-color:var(--kraft);background:var(--kraft);color:var(--ink)">Join the waitlist</a>
+</div>
+<script src="js/main.js"></script>
 </body>
 </html>

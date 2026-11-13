@@ -1,23 +1,43 @@
-# Sutherland Farm website: setup notes
+# Sutherland Farm website
 
-A single-page static site. No build step, no database. Open `index.html` to preview.
+A simple, fast website for Sutherland Farm: Siberian Hardneck garlic grown in Carstairs, Alberta.
 
-## Before it goes live (checklist)
-1. **Waitlist form**: create a free form at formspree.io (or Netlify Forms / Web3Forms), paste the endpoint into `FORM_ENDPOINT` near the bottom of `index.html`. Until then the form shows "thank you" but does NOT save signups.
-2. **Facebook / Instagram links**: replace `href="#"` on the `fb` and `ig` links in the footer.
-3. **Garlic description**: confirm the wording in "Siberian Hardneck" is accurate (cold-hardy, grown, cured and packed on the farm, stamped kraft bags). Add flavour notes and bulb size if you want them.
-4. **Pricing**: $3/bulb and $15/lb are the 2026 prices. Edit when 2027 pricing is set.
-5. **Delivery area / pick-up location**: add a line in "How it works" once decided.
+Plain HTML, CSS and JavaScript. No framework and no build step, so it can be hosted for free (for example on GitHub Pages).
 
-## Hosting and domain
-- Free hosting: Cloudflare Pages, Netlify or GitHub Pages. Drag the whole folder in.
-- Domain: register a `.ca` (about $15 to $20 per year), for example sutherlandfarm.ca if it's free. Check availability first.
+## Pages
 
-## Updating
-- Sold out / back in stock: edit the status pill text at the top of the hero.
-- Photos: drop a new image into `images/` and change the filename in the `<img>` tag.
+| File | Page |
+|---|---|
+| `index.html` | Home |
+| `our-story.html` | Our Story |
+| `the-garlic.html` | The Garlic |
+| `how-to-order.html` | How to Order |
 
-## Single bulb: hover animation (first card)
-Hover (or tap on a phone) and the bulb shakes, then 24 paper-thin flakes peel off one after another and float around it. Each flake is a cut-out of the skin-on bulb photo (`images/shards/`), so it reveals the matching patch of the bare bulb when it lifts, and it flies back to the exact spot it came from at the end.
-The bare bulb is your original bare photo, so the clove that falls is the bulb's own front-right clove, cut from that photo (`bare-clove.webp`, with a root cap from a real clove photo added). The same image sits in the bulb, then tips out about its base. As it comes away it turns about its own length (a 3D-style flip through an edge-on moment), and a real photo of a clove's other side (`clove-back.webp`) opens up, so it never dissolves or morphs. It then bounces on the black shape (the first bounce is the highest), slides off its edge, and the flakes fly home. The photo with that clove missing (`bulb-bare-hole.webp`) shows underneath.
-Files: `bulb.webp` (skin on), `bulb-bare.webp` (bare, whole), `bulb-bare-hole.webp` (clove missing), `bare-clove.webp`, `clove-back.webp`. The three bulb photos share one 900x1200 frame; the clove is positioned over the hole with CSS (`.cl`). To change the bulb, replace them (same framing) and re-cut the flakes. Motion and physics are in `index.html` (`tickPieces`, `dropClove`).
+Every page ends with the 2027 waitlist form. Styles are in `css/style.css`, the menu and form code is in `js/main.js`, and photos are in `images/`.
+
+## Common edits
+
+- **Prices, text, phone number:** search the four `.html` files and change the words directly.
+- **Facebook / Instagram links:** in the footer of each page, replace `href="#"` on the links marked `data-social`.
+- **Colours:** at the top of `css/style.css` (`--cream`, `--ink`, `--kraft`).
+
+## Connecting the waitlist to Google Sheets
+
+The form sends each signup to a Google Form, which saves it in a Google Sheet automatically.
+
+1. Make a Google Form with these questions: Name, Phone, Email, Town, What would you like (checkboxes: Single bulbs, By the pound, Braids), Roughly how much, Notes.
+2. In the form's **Responses** tab, click **Link to Sheets** to create the sheet.
+3. Click the three-dot menu, then **Get pre-filled link**, fill in every question with any text, and click **Get link**. The link contains `entry.123456789=` for each question.
+4. Open `js/main.js`. Set `action` to the form address with `/viewform` changed to `/formResponse`, and put each `entry.` number next to the matching field.
+
+Until this is done, the form still checks answers and shows the thank-you message, but nothing is saved.
+
+## Testing
+
+Open the site through a local web server, not by double-clicking the file:
+
+```
+python3 -m http.server 8000
+```
+
+Then visit http://localhost:8000. Check it on a real phone too, including opening the link inside Facebook and Instagram.
