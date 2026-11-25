@@ -41,8 +41,8 @@ h2 { font-size: clamp(2.2rem, 4.6vw, 3.5rem); }
 h3 { font-size: 1.8rem; line-height: 1.15; }
 p { margin: 0 0 1em; }
 .eyebrow {
-  font-family: var(--text); font-size: .8rem; font-weight: 500;
-  letter-spacing: .18em; text-transform: uppercase; color: var(--kraft-dark);
+  font-family: var(--text); font-size: .86rem; font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--kraft-dark);
   margin-bottom: 1.1em; display: block;
 }
 .lead { font-size: 1.2rem; color: var(--ink-2); max-width: 34em; }
