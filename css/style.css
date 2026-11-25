@@ -480,3 +480,19 @@ fieldset.field { border: 0; margin: 0 0 20px; padding: 0; }
 }
 @media (max-width: 760px) { .facts span { letter-spacing: .03em; white-space: nowrap; } }
 @media (max-width: 340px) { .facts span { white-space: normal; } }
+.stamp { line-height: 1.05; }
+
+/* ---------- Hero call to action ---------- */
+.btn-hero {
+  background: var(--kraft); border-color: var(--kraft); color: var(--ink);
+  min-height: 64px; padding: 0 32px; font-size: 1.1rem;
+  box-shadow: 0 10px 24px -8px rgba(138, 98, 54, .55);
+  transition: background .2s, border-color .2s, color .2s, transform .2s, box-shadow .2s;
+}
+.btn-hero svg { transition: transform .2s; }
+.btn-hero:hover, .btn-hero:focus-visible {
+  background: var(--ink); border-color: var(--ink); color: var(--cream);
+  transform: translateY(-2px); box-shadow: 0 14px 28px -10px rgba(20, 18, 17, .55);
+}
+.btn-hero:hover svg { transform: translateX(4px); }
+@media (prefers-reduced-motion: reduce) { .btn-hero, .btn-hero svg { transition: none; } .btn-hero:hover { transform: none; } }
