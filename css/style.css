@@ -119,8 +119,8 @@ p { margin: 0 0 1em; }
   border: 1px dashed rgba(138, 98, 54, .35);
 }
 .hero-bulb {
-  position: absolute; z-index: 1; left: 50%; top: 4%; height: 90%; width: auto; max-width: none;
-  margin-left: -26.5%; /* half the bulb's width at this height */
+  position: absolute; z-index: 1; left: 50%; top: 15%; height: 70%; width: auto; max-width: none;
+  margin-left: -20.6%; /* half the bulb's width at this height (647/1100 × 70% ÷ 2) */
   mix-blend-mode: multiply;
   animation: float 7s ease-in-out infinite; transform-origin: 50% 80%;
 }
