@@ -83,7 +83,7 @@ const WAITLIST = {
         } catch (x) {
           submit.disabled = false;
           submit.textContent = "Join the 2027 waitlist";
-          err.textContent = "Something went wrong sending that. Please try again, or call or text 403-899-8484.";
+          err.textContent = "Something went wrong sending that. Please try again, or call or text " + ["403", "899", "8484"].join("-") + ".";
           err.classList.add("show");
           return;
         }
