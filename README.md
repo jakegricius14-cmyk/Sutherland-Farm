@@ -18,7 +18,7 @@ Every page ends with the 2027 waitlist form. Styles are in `css/style.css`, the 
 ## Common edits
 
 - **Prices, text, phone number:** search the four `.html` files and change the words directly.
-- **Facebook / Instagram links:** in the footer of each page, replace `href="#"` on the links marked `data-social`.
+- **Facebook / Instagram links:** they appear in the footer and the waitlist section of every page (search for `facebook.com` and `instagram.com`).
 - **Colours:** at the top of `css/style.css` (`--cream`, `--ink`, `--kraft`).
 
 ## Connecting the waitlist to Google Sheets
